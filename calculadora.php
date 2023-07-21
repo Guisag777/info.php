@@ -1,13 +1,9 @@
 <?php
 
-$Val1 = 6:
+$Val1 = 6;
 $Val2 = 2;
 $Opr = "/";
 $Result = 0;
-
-
-
-
 
 
 if ($Opr=="+") {
