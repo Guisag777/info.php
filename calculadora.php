@@ -2,23 +2,32 @@
 
 $Val1 = 6;
 $Val2 = 2;
-$Opr = "/";
+$Opr = "^";
 $Result = 0;
 
 
 if ($Opr=="+") {
     $Result=$Val1+$Val2;
-}// O valor é 8
+}
 else if ($Opr=="-") {
     $Result=$Val1-$Val2;
-}// O valor é 4
+}
 else if ($Opr=="/") {
     $Result=$Val1/$Val2;
-}// O valor é 3
-else {
+}
+else if ($Opr=="*") {
     $Result=$Val1*$Val2;
 }
-
-// O valor é 12
+else if ($Opr=="^") {
+    $Result=pow($Val1, $Val2);
+}
 
 echo "O resultado é ". $Result;
+
+if ($Result%2==0) {
+    echo " (Número par)";
+}
+else {
+    echo " (Número ímpar)";
+}
+ 
