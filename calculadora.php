@@ -1,8 +1,8 @@
 <?php
 
-$Val1 = 2;
+$Val1 = 2024;
 $Val2 = 10;
-$Opr = "MA";
+$Opr = "@";
 
 //Operadores básicos
 
@@ -45,7 +45,20 @@ function percentAdd($Acrescimo, $Val1, $Val2) {
 function avarage($Val1, $Val2) {
     return ($Val1+$Val2)/2;
 }
- 
+
+//Descubra se o ano é bissexto
+//A variável $Val1 recebe o ano em que deseja
+//Se o módulo desse ano por 4 for 0, o ano é bissexto
+//O operador @ calcula se o valor do ano é bissexto
+function LeapYear($Val1) {
+    if ($Val1 % 4 == 0) {
+        return $Val1. " é um ano bissexto!";
+    }
+    else {
+        return "O ano não é bissexto";
+    }
+}
+
 //Operações 
 
 if ($Opr == "+") {
@@ -72,8 +85,9 @@ if ($Opr == "Addition%") {
 if ($Opr == "MA") { 
     echo avarage($Val1, $Val2);
 }
-
-
+if ($Opr == "@") {
+    echo LeapYear($Val1);
+}
 
 
 //Contador com laços de repetição
