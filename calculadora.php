@@ -2,54 +2,79 @@
 
 $Val1 = 2;
 $Val2 = 10;
-$Opr = "Tab";
-$Result = 0;
+$Opr = "MA";
 
 //Operadores básicos
-if ($Opr=="+") {
-    $Result=$Val1+$Val2;
-    echo " O resultado é ". $Result;
+
+function sum($Val1, $Val2) {
+    return ($Val1 + $Val2);
 }
-else if ($Opr=="-") {
-    $Result=$Val1-$Val2;
-    echo " O resultado é ". $Result;
+
+function sub($Val1, $Val2) {
+    return ($Val1 - $Val2);
 }
-else if ($Opr=="/") {
-    $Result=$Val1/$Val2;
-    echo " O resultado é ". $Result;
+
+function division($Val1, $Val2) {
+    return ($Val1 / $Val2);
 }
-else if ($Opr=="*") {
-    $Result=$Val1*$Val2;
-    echo " O resultado é ". $Result;
+
+function multi($Val1, $Val2) {
+    return ($Val1 * $Val2);
 }
-else if ($Opr=="^") {
-    $Result=pow($Val1, $Val2);
-    echo " O resultado é ". $Result;
+
+function poww($Val1, $Val2) {
+    return pow($Val1,$Val2);
 }
 
 //Percentual
 //Desconto=percentual de desconto
 //Result=valor a ser pago
-if ($Opr == "perc") {
+function percentDisc($Desconto, $Val1, $Val2) {
     $Desconto = ($Val1 * $Val2) / 100;
-    $Result= $Val1 - $Desconto;
-    echo " O resultado é ". $Result;
+    return ($Val1 - $Desconto);
 }
-
 
 //Acrescimo=percentual de valor acrescentado 
 //Result=Valor a ser pago
-if ($Opr == "perc+") {
+function percentAdd($Acrescimo, $Val1, $Val2) {
     $Acrescimo = ($Val1 * $Val2) / 100;
-    $Result= $Val1 + $Acrescimo;
-    echo " O resultado é ". $Result;
+    return ($Val1 + $Acrescimo);
 }
 
 //Média aritimética
-if ($Opr == "ma") {
-    $Result=($Val1+$Val2)/2; 
-    echo " A média aritimética é: ". $Result;
+function avarage($Val1, $Val2) {
+    return ($Val1+$Val2)/2;
 }
+ 
+//Operações 
+
+if ($Opr == "+") {
+    echo sum($Val1, $Val2);
+}
+if ($Opr=="-") {
+    echo sub($Val1, $Val2);
+}
+if ($Opr=="/") {
+    echo division($Val1, $Val2);
+}
+if ($Opr=="*") {
+    echo multi($Val1, $Val2);
+}
+if ($Opr=="^") {
+    echo poww($Val1, $Val2);
+}
+if ($Opr == "Discount%") {
+    echo percentDisc($Desconto, $Val1, $Val2)."% de desconto";
+}
+if ($Opr == "Addition%") {
+    echo percentAdd($Acrescimo, $Val1, $Val2)."% de acréscimo";
+}
+if ($Opr == "MA") { 
+    echo avarage($Val1, $Val2);
+}
+
+
+
 
 //Contador com laços de repetição
 //$Val1 é o número até qual você deseja contar
