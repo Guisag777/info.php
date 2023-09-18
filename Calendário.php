@@ -1,12 +1,18 @@
 <?php 
 
-$dataSTR = "32/04/2007";
+$dataSTR = "40/4/2007";
 $data = explode("/", $dataSTR);
-$dia= (int)$data[0];
-$mes= (int)$data[1];
-$ano= (int)$data[2]; 
+$dia= (int) $dataSTR[0];
+$mes= (int) $dataSTR[1];
+$ano= (int) $dataSTR[2]; 
 
-echo "Data selecionada: ". $dataSTR. "<br>";
+function M30dias($mes) {
+    return in_array($mes, [4, 6, 9, 11]);
+}
+
+function M31dias($mes) {
+    return in_array($mes, [1, 3, 5, 7, 8, 10, 12]);
+}
 
 //A variável $ano recebe o ano em que deseja
 //Se o módulo desse ano por 4 for 0, o ano é bissexto
@@ -25,22 +31,32 @@ function LeapYear($ano) {
     }
 }
 
-$Mes30dias = [4, 6 ,9 ,11];
-$Mes31dias = [1, 3, 5, 7, 8, 10, 12];
+function Validation($ano, $mes, $dia) {
 
-
-function Validation($ano, $mes, $dia, $Mes30dias, $Mes31dias) {
-
-    if (in_array($mes, $Mes30dias) && $dia > 30) {
+    //Dias
+    if ($dia < 1 || $dia > 31) {
         $dia = 1;
-        $mes += 1;
+    }
+
+    //Meses
+    if ($mes < 1 || $mes > 12) {
+        $mes = 1;
+        $ano += 1;
+    }
+
+    //Meses com 30 dias
+    if (M30dias($mes) && $dia > 30) {
+       $dia = 1;
+       $mes += 1;
     }
     
-    if (in_array($mes, $Mes31dias) && $dia > 31) {
+    //Meses com 31 dias
+    if (M31dias($mes) && $dia > 31) {
         $dia = 1;
         $mes += 1;
     } 
 
+    //Mes de fevereiro
     if ($mes == 2 && $dia >= 28) {
         $dia = 28;
 
@@ -49,7 +65,8 @@ function Validation($ano, $mes, $dia, $Mes30dias, $Mes31dias) {
         }
     }
 
-    if (count($ano)==4 && count($mes)==2 && count($dia)==2) {
+    //Erro com sintaxe
+    if (strlen($ano)==4 && count($mes)==2 && count($dia)==2) {
         return "";
     }
     else { 
@@ -57,5 +74,7 @@ function Validation($ano, $mes, $dia, $Mes30dias, $Mes31dias) {
     }
 }
 
-echo Validation($ano, $mes, $dia, $Mes30dias, $Mes31dias);
-echo LeapYear($ano);
+Validation($ano, $mes, $dia);
+$dataSTR = "{$dia}/{$mes}/{$ano}";
+
+echo "Data selecionada {$dataSTR} <br> ". LeapYear($ano);
