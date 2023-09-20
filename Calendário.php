@@ -6,13 +6,10 @@ $dia= (int) $dataSTR[0];
 $mes= (int) $dataSTR[1];
 $ano= (int) $dataSTR[2]; 
 
-function M30dias($mes) {
-    return in_array($mes, [4, 6, 9, 11]);
-}
+//Mêses com 30 dias ou 31 dias 
 
-function M31dias($mes) {
-    return in_array($mes, [1, 3, 5, 7, 8, 10, 12]);
-}
+$m30dias = [4, 6, 9, 11];
+$m31dias = [1, 3, 5, 7, 8, 10, 12];
 
 //A variável $ano recebe o ano em que deseja
 //Se o módulo desse ano por 4 for 0, o ano é bissexto
@@ -31,7 +28,7 @@ function LeapYear($ano) {
     }
 }
 
-function Validation($ano, $mes, $dia) {
+function Validation($ano, $mes, $dia,$m30dias,$m31dias) {
 
     //Dias
     if ($dia < 1 || $dia > 31) {
@@ -45,13 +42,13 @@ function Validation($ano, $mes, $dia) {
     }
 
     //Meses com 30 dias
-    if (M30dias($mes) && $dia > 30) {
+    if (in_array($mes, $m30dias) && $dia > 30) {
        $dia = 1;
        $mes += 1;
     }
     
     //Meses com 31 dias
-    if (M31dias($mes) && $dia > 31) {
+    if (in_array($mes, $m31dias) && $dia > 31) {
         $dia = 1;
         $mes += 1;
     } 
@@ -74,7 +71,7 @@ function Validation($ano, $mes, $dia) {
     }
 }
 
-Validation($ano, $mes, $dia);
+Validation($ano, $mes, $dia, $m30dias, $m31dias);
 $dataSTR = "{$dia}/{$mes}/{$ano}";
 
 echo "Data selecionada {$dataSTR} <br> ". LeapYear($ano);
