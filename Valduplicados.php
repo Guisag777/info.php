@@ -27,25 +27,22 @@ echo "Repetições encontradas: $countRep<br>";
 echo implode("-",$limpo);
 */
 
-$array = [ 
-    "maçã",
-    "banana",
-    "uva",
-    "melancia",
-    "banana",
-];
-
-$c = count($array);
-$limpo = []; 
-
-for ($i=0; $i < $c; $i++) {
-    $atual = $array[$i]; 
-    if (isset($limpo[$atual])) {
-        $limpo[$atual] = 1;
-    }
-    else {
-        $limpo[$atual] += 1;
+$frutas = ["maçã", "banana", "laranja", "banana", "uva", "maçã", "maçã"];
+$n = count($frutas);
+$newfrutas = [];
+for ($i = 0; $i < $n; $i++) {
+    $fruta = $frutas[$i];
+    if (!isset($newfrutas[$fruta])) {
+        $newfrutas[$fruta] = 1;
+    } else {
+        $newfrutas[$fruta] += 1;
     }
 }
 
-echo implode("-", $limpo);
+$result = [];
+
+foreach ($newfrutas as $fruta => $num) {
+    $result[] = $num . $fruta;
+    echo $num . " ". $fruta." ";
+}
+
