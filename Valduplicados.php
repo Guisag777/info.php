@@ -1,31 +1,6 @@
 <?php
-/*
-//Remover valores duplicados em um array
-//Dica:in_array(), $array_merge, isset()
-$array = [
-    "maçã",
-    "banana",
-    "uva",
-    "melancia",
-    "banana",
-];
 
-$limpo = [];
-$c = count($array);
-
-//Saída esperada: maçã,banana,uva,melancia
-    for ($i=0; $i < $c ; $i++) { 
-        if(!in_array($array[$i], $limpo)) {
-            array_push($limpo , $array[$i]);
-            unset($array[$i]);
-        }
-    }
-
-$countRep = count($array);
-
-echo "Repetições encontradas: $countRep<br>";
-echo implode("-",$limpo);
-*/
+//Contar a quantidade de frutas repetidas ex: 3 maçã, 2 banana ....
 
 $frutas = ["maçã", "banana", "laranja", "banana", "uva", "maçã", "maçã"];
 $n = count($frutas);
@@ -43,6 +18,24 @@ $result = [];
 
 foreach ($newfrutas as $fruta => $num) {
     $result[] = $num . $fruta;
-    echo $num . " ". $fruta." ";
 }
 
+/*Ultilizar o mesmo exercício e criar uma função que recebe dois parametros (array,string) para ordenar
+o array de frutas em ordem crescente ou decrescente*/
+//Dica: sort, usort, asort, ksort, rsort......
+//Devem ser ultilizados dentro da função
+
+function ordenacao($result, $ordem = "asc") {
+    if ($ordem == "asc") {
+        $ordem = $result;
+        sort($ordem);
+        return implode("<br>",$ordem);
+    }
+    else if ($ordem == "desc") {
+        $ordem = $result;
+        rsort($ordem);
+        return implode("<br>", $ordem);
+    }
+}
+
+echo ordenacao($result, "desc");
