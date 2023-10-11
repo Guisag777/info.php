@@ -21,7 +21,7 @@ class Person {
     public $height;
     public $weight;
 
-    public function person($namePers, $heightPers , $weightPers){
+    public function __construct($namePers, $heightPers , $weightPers){
         $this->name = $namePers;
         $this->height = $heightPers;
         $this->weight = $weightPers;
@@ -34,6 +34,7 @@ class Person {
     }
 }
 
-$infopers = new Person();
-$infopers->person("Guilherme", 168 , 57);
+$infopers = new Person($name , $height, $weight);
+$infopers->__construct("Guilherme", 168 , 57);
 $infopers->info();
+
